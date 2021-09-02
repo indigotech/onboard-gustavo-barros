@@ -1,3 +1,3 @@
-"# Onboard project"
+# Onboard project
 
 My first project at Taqtile
