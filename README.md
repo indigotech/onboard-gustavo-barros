@@ -15,6 +15,7 @@ Here are some basic information about the tools used in this project
         - Eslint (for problems in the code);
 
 ## Steps to run and debug
+First of all, run `npm install` to install the dependencies of the project.
 
 The project is basically made in React, so to run it you'll just have to write this command in the terminal: `npm start`, then the app will open in your browser.
     
