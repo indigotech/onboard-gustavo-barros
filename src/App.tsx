@@ -8,50 +8,50 @@ function App() {
     password: '',
   })
 
-  const handleInputChange = (evento: { target: { name: string; value: string; }; }) => {
+  const handleInputChange = (event: { target: { name: string; value: string; }; }) => {
     setData({
       ...data,
-      [evento.target.name] : evento.target.value
+      [event.target.name] : event.target.value
     })
   }
 
-  const validateEmail = () => {
-    const re = /\S+@\S+\.\S+/;
+  const validateEmail = (email: string ) => {
+    const validEmailRegex = /\S+@\S+\.\S+/;
 
-    if (data.email.length == 0) {
+    if (email.length == 0) {
       alert('Email is a required field');
       return false;
     }
 
-    if (!re.test(data.email)) {
+    if (!validEmailRegex.test(email)) {
       alert('Inform a valid email');
       return false;
     }
   }
 
-  const validatePassword = () => {
-    const reDigit = /[0-9.,]/;
-    const reLetter = /[A-z.,]|[a-z.,]/;
+  const validatePassword = (password: string) => {
+    const findDigitRegex = /[0-9.,]/;
+    const findLetterRegex = /[A-z.,]|[a-z.,]/;
     
-    if (data.password.length == 0) {
+    if (password.length == 0) {
       alert('Passsword is a required field');
       return false;
     }
 
-    if (data.password.length < 7) {
+    if (password.length < 7) {
       alert('Password must have at least 7 characters');
       return false;
     }
     
-    if (!reDigit.test(data.password) || !reLetter.test(data.password)) {
+    if (!findDigitRegex.test(password) || !findLetterRegex.test(password)) {
       alert('Password must have at least one digit and one letter');
       return false;
     }
   }
 
   const validateForm = () => {
-    validateEmail();
-    validatePassword();
+    validateEmail(data.email);
+    validatePassword(data.password);
   }
 
   return (
