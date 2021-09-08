@@ -72,6 +72,7 @@ function App() {
             className='Input'
             onChange={handleInputChange} />
           <input type='submit' value='Entrar' className='Submit-button' onClick={validateForm} />
+
         </form>
       </header>
     </div>
