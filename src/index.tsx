@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { client } from './App';
+import { client } from './GraphQL/mutations/mutations';
 import { ApolloProvider } from '@apollo/client';
 
 ReactDOM.render(
