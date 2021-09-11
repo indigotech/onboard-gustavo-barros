@@ -14,6 +14,7 @@
 .App-form {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .Submit-button {
@@ -31,5 +32,8 @@
   margin-bottom: 20px;
 }
 
-
+.Loading-indicator {
+  display: flex;
+  justify-content: center;
+}
 

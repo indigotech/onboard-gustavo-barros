@@ -5,6 +5,7 @@ import { LOGIN_MUTATION } from '../../GraphQL/mutations/mutations';
 import '../../App.css';
 import { Link } from 'react-router-dom';
 import { blankPagePath } from '../blank-page/Blank';
+import ClipLoader from "react-spinners/ClipLoader";
 
 export const formPath = '/';
 
@@ -60,7 +61,13 @@ function Form(): JSX.Element {
           <input type='text' name='email' className='Input' onChange={handleInputChange} />
           <label>Senha</label>
           <input type='text' name='password' className='Input' onChange={handleInputChange} />
-          <button type='submit' className='Submit-button' onClick={submitForm}>Entrar</button>
+          {!loading && 
+            <button type='submit' className='Submit-button' onClick={submitForm}>Login</button> ||
+            loading &&
+            <div className='Loading-indicator'>
+              <ClipLoader color={'#000'} loading={loading} size={25} />
+            </div>
+          }
         </form>
         <Link to={blankPagePath}>Blank Page</Link>
       </header>
