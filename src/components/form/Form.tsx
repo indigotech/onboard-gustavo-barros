@@ -60,7 +60,7 @@ function Form(): JSX.Element {
           <input type='text' name='email' className='Input' onChange={handleInputChange} />
           <label>Senha</label>
           <input type='text' name='password' className='Input' onChange={handleInputChange} />
-          <input type='submit' value='Entrar' className='Submit-button' onClick={submitForm} />
+          <button type='submit' className='Submit-button' onClick={submitForm}>Entrar</button>
         </form>
         <Link to={blankPagePath}>Blank Page</Link>
       </header>
