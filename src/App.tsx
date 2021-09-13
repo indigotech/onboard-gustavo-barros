@@ -1,78 +1,62 @@
 import { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { validatePassword, validateEmail } from './validations/validations';
+import { LOGIN_MUTATION } from './GraphQL/mutations/mutations';
 import './App.css';
 
-function App() {
-
+function App(): JSX.Element {
   const [data, setData] = useState({
     email: '',
     password: '',
-  })
+  });
 
-  const handleInputChange = (event: { target: { name: string; value: string; }; }) => {
+  const handleInputChange = (event: { target: { name: string; value: string } }) => {
     setData({
       ...data,
-      [event.target.name] : event.target.value
-    })
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const [login, { loading }] = useMutation(LOGIN_MUTATION);
+
+  if (loading) {
+    console.log('Loading...');
   }
 
-  const validateEmail = (email: string ) => {
-    const validEmailRegex = /\S+@\S+\.\S+/;
-
-    if (email.length == 0) {
-      alert('Email is a required field');
-      return false;
-    }
-
-    if (!validEmailRegex.test(email)) {
-      alert('Inform a valid email');
-      return false;
-    }
+  function isFormValid() {
+    return validateEmail(data.email) && validatePassword(data.password);
   }
 
-  const validatePassword = (password: string) => {
-    const findDigitRegex = /[0-9.,]/;
-    const findLetterRegex = /[A-z.,]|[a-z.,]/;
-    
-    if (password.length == 0) {
-      alert('Passsword is a required field');
-      return false;
-    }
-
-    if (password.length < 7) {
-      alert('Password must have at least 7 characters');
-      return false;
-    }
-    
-    if (!findDigitRegex.test(password) || !findLetterRegex.test(password)) {
-      alert('Password must have at least one digit and one letter');
-      return false;
-    }
+  async function submitForm(event: any) {
+    event.preventDefault();
+    await loginMutation(data.email, data.password);
   }
 
-  const validateForm = () => {
-    validateEmail(data.email);
-    validatePassword(data.password);
-  }
-
+  const loginMutation = async (email: string, password: string) => {
+    if (isFormValid()) {
+      try {
+        const response = await login({
+          variables: {
+            email: email,
+            password: password,
+          },
+        });
+        localStorage.setItem(data.email, response.data.login.token);
+      } catch (error) {
+        alert(error);
+      }
+    }
+  };
   return (
     <div className='App'>
       <header className='App-header'>
         <form className='App-form'>
           <h1>Bem vindo à Taqtile!</h1>
           <label>Email</label>
-          <input 
-            type='text' 
-            name='email' 
-            className='Input' 
-            onChange={handleInputChange} />
+          <input type='text' name='email' className='Input' onChange={handleInputChange} />
           <label>Senha</label>
-          <input 
-            type='text' 
-            name='password' 
-            className='Input'
-            onChange={handleInputChange} />
-          <input type='submit' value='Entrar' className='Submit-button' onClick={validateForm} />
-
+          <input type='text' name='password' className='Input' onChange={handleInputChange} />
+          <input type='submit' value='Entrar' className='Submit-button' onClick={submitForm} />
         </form>
       </header>
     </div>
