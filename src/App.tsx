@@ -1,6 +1,6 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import BlankPage from './components/blank-page/Blank';
-import Form from './components/form/Form';
+import Form from './components/login-page/LoginPage';
 
 function App(): JSX.Element {
   return (
