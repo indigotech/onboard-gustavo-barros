@@ -6,9 +6,9 @@ import '../../App.css';
 import { Link } from 'react-router-dom';
 import { blankPagePath } from '../blank-page/Blank';
 
-export const formPath = '/';
+export const loginPagePath = '/';
 
-function Form(): JSX.Element {
+function LoginPage(): JSX.Element {
   const [data, setData] = useState({
     email: '',
     password: '',
@@ -68,4 +68,4 @@ function Form(): JSX.Element {
   );
 }
 
-export default Form;
+export default LoginPage;
