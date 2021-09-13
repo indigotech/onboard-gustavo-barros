@@ -67,7 +67,7 @@ function LoginPage(): JSX.Element {
             </button>
           )) ||
             (loading && (
-              <div className='Spinner-container'>
+              <div className='Loading-indicator'>
                 <ClipLoader color={'#000'} loading={loading} size={25} />
               </div>
             ))}
