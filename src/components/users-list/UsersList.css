@@ -1,0 +1,15 @@
+.Header {
+    background-color: white;
+    display: flex;
+    flex: 1;
+}
+
+.List-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.Users {
+    width: 10%;
+    justify-content: space-evenly;
+}

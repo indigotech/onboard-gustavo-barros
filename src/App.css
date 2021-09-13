@@ -31,5 +31,8 @@
   margin-bottom: 20px;
 }
 
-
+.Spinner-container {
+  display: flex;
+  justify-content: center;
+}
 

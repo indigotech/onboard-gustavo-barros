@@ -1,5 +1,5 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import BlankPage from './components/blank-page/Blank';
+import UsersList from './components/users-list/UsersList';
 import LoginPage from './components/login-page/LoginPage';
 
 function App(): JSX.Element {
@@ -7,7 +7,7 @@ function App(): JSX.Element {
     <BrowserRouter>
       <Switch>
         <Route exact path='/' component={LoginPage} />
-        <Route path='/blank' component={BlankPage} />
+        <Route path='/users-list' component={UsersList} />
       </Switch>
     </BrowserRouter>
   );

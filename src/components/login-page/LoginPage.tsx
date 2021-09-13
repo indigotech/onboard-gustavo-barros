@@ -4,7 +4,8 @@ import { validatePassword, validateEmail } from '../../validations/validations';
 import { LOGIN_MUTATION } from '../../GraphQL/mutations/mutations';
 import '../../App.css';
 import { Link } from 'react-router-dom';
-import { blankPagePath } from '../blank-page/Blank';
+import { usersListPath } from '../users-list/UsersList';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 export const loginPagePath = '/';
 
@@ -21,7 +22,7 @@ function LoginPage(): JSX.Element {
     });
   };
 
-  function validForm() {
+  function isFormValid() {
     return validateEmail(data.email) && validatePassword(data.password);
   }
 
@@ -37,7 +38,7 @@ function LoginPage(): JSX.Element {
   }
 
   const loginMutation = async (email: string, password: string) => {
-    if (validForm()) {
+    if (isFormValid()) {
       try {
         const response = await login({
           variables: {
@@ -60,9 +61,18 @@ function LoginPage(): JSX.Element {
           <input type='text' name='email' className='Input' onChange={handleInputChange} />
           <label>Senha</label>
           <input type='text' name='password' className='Input' onChange={handleInputChange} />
-          <button type='submit' className='Submit-button' onClick={submitForm}>Entrar</button>
+          {(!loading && (
+            <button type='submit' className='Submit-button' onClick={submitForm}>
+              Entrar
+            </button>
+          )) ||
+            (loading && (
+              <div className='Spinner-container'>
+                <ClipLoader color={'#000'} loading={loading} size={25} />
+              </div>
+            ))}
         </form>
-        <Link to={blankPagePath}>Blank Page</Link>
+        <Link to={usersListPath}>Users List</Link>
       </header>
     </div>
   );
