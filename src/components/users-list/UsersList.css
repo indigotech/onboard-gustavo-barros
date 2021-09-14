@@ -1,7 +1,5 @@
 .Header {
-    background-color: white;
-    display: flex;
-    flex: 1;
+    padding: 10px;
 }
 
 .List-container {
@@ -10,6 +8,6 @@
 }
 
 .Users {
-    width: 10%;
+    width: 20%;
     justify-content: space-evenly;
 }

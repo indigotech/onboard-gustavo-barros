@@ -46,7 +46,7 @@ function LoginPage(): JSX.Element {
             password: password,
           },
         });
-        localStorage.setItem(data.email, response.data.login.token);
+        localStorage.setItem('authtoken', response.data.login.token);
       } catch (error) {
         alert(error);
       }
