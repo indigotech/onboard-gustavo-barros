@@ -28,16 +28,24 @@ function UsersList(): JSX.Element {
         <div className='List-container'>
           <div className='Users'>
             <h3>Nome</h3>
-            {users.map((user: any) => {
-              return <p>{user.name}</p>;
-            })}
           </div>
-          <div>
+          <div className='Users'>
             <h3>Email</h3>
-            {users.map((user: any) => {
-              return <p>{user.email}</p>;
-            })}
           </div>
+        </div>
+        <div >
+          {users.map((user: any) => {
+            return (
+              <div className='users-list'>
+                <div className='container_list-item'>
+                  <p className='list-item'>{user.name}</p>
+                </div>
+                <div className='container_list-item'>
+                  <p className='list-item'>{user.email}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </>

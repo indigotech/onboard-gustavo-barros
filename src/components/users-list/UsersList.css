@@ -11,3 +11,20 @@
     width: 20%;
     justify-content: space-evenly;
 }
+
+.users-list {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.list-item {
+    padding-right: 20px;
+}
+
+.container_list-item{
+    display: flex;
+    align-items: flex-start;
+    width: 170px;
+}
