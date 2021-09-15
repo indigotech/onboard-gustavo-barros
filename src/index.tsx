@@ -1,10 +1,10 @@
+import { ApolloProvider } from '@apollo/client';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 import { client } from './GraphQL/mutations/mutations';
-import { ApolloProvider } from '@apollo/client';
+import './index.css';
+import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>

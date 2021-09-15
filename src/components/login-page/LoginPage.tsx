@@ -1,11 +1,11 @@
-import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { validatePassword, validateEmail } from '../../validations/validations';
-import { LOGIN_MUTATION } from '../../GraphQL/mutations/mutations';
-import '../../App.css';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { usersListPath } from '../users-list/UsersList';
 import ClipLoader from 'react-spinners/ClipLoader';
+import '../../App.css';
+import { LOGIN_MUTATION } from '../../GraphQL/mutations/mutations';
+import { validateEmail, validatePassword } from '../../validations/validations';
+import { usersListPath } from '../users-list/UsersList';
 
 export const loginPagePath = '/';
 
@@ -72,7 +72,7 @@ function LoginPage(): JSX.Element {
               </div>
             ))}
         </form>
-        <Link to={usersListPath}>Users List</Link>
+        <Link to={usersListPath}>Lista de Usuários</Link>
       </header>
     </div>
   );

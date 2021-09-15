@@ -1,9 +1,9 @@
+import { useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
+import ClipLoader from 'react-spinners/ClipLoader';
+import { GET_USERS } from '../../GraphQL/queries/queries';
 import { loginPagePath } from '../login-page/LoginPage';
 import './UsersList.css';
-import { GET_USERS } from '../../GraphQL/queries/queries';
-import { useQuery } from '@apollo/client';
-import ClipLoader from 'react-spinners/ClipLoader';
 
 export const usersListPath = '/users-list';
 
@@ -15,26 +15,26 @@ function UsersList(): JSX.Element {
   }
 
   if (error) {
-    console.log(error);
+    alert(error);
   }
 
   const users = data.users.nodes;
 
   return (
-    <>
-      <div className='Header'>
-        <Link to={loginPagePath}>Login Page</Link>
-        <h1>Lista de Usuários</h1>
-        <div className='List-container'>
-          <div className='Users'>
-            <h3>Nome</h3>
-          </div>
-          <div className='Users'>
-            <h3>Email</h3>
-          </div>
+    <div className='Header'>
+      <Link to={loginPagePath}>Página de Login</Link>
+      <h1>Lista de Usuários</h1>
+      <div className='List-container'>
+        <div className='Users'>
+          <h3>Nome</h3>
         </div>
-        <div >
-          {users.map((user: any) => {
+        <div className='Users'>
+          <h3>Email</h3>
+        </div>
+      </div>
+      <div>
+        {!error &&
+          users.map((user: any) => {
             return (
               <div className='users-list'>
                 <div className='container_list-item'>
@@ -46,9 +46,8 @@ function UsersList(): JSX.Element {
               </div>
             );
           })}
-        </div>
       </div>
-    </>
+    </div>
   );
 }
 
