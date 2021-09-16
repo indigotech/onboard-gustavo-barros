@@ -45,7 +45,9 @@ function UsersList(): JSX.Element {
 
   return (
     <div className='Header'>
-      <Link to={loginPagePath}>Página de Login</Link>
+      <Link to='/add-user'>
+        <button className='add-user'>Adicionar usuário</button>
+      </Link>
       <h1>Lista de Usuários</h1>
       <div className='List-container'>
         <div className='Users'>
@@ -67,6 +69,7 @@ function UsersList(): JSX.Element {
           containerClassName={'paginationBttns'}
         />
       </div>
+      <Link to={loginPagePath}>Página de Login</Link>
     </div>
   );
 }
