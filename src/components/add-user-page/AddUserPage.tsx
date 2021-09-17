@@ -1,7 +1,9 @@
+import { useMutation } from '@apollo/client';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../../App.css';
-import { validateEmail, validateNameAndRole, validatePhone } from '../../validations/validations';
+import { CREATE_USER } from '../../GraphQL/mutations/mutations';
+import { validateEmail, validateName, validatePhone } from '../../validations/validations';
 import { usersListPath } from '../users-list/UsersList';
 
 function AddUserPage(): JSX.Element {
@@ -10,6 +12,15 @@ function AddUserPage(): JSX.Element {
   const [birthDate, setBirthDate] = useState('');
   const [email, setEmail] = useState('');
   const [role, setRole] = useState('');
+  const [createUser, { loading, error }] = useMutation(CREATE_USER);
+
+  if (loading) {
+    console.log('loading');
+  }
+
+  if (error) {
+    alert(`Erro de teste: ${error.message}`);
+  }
 
   const handleNameChange = (event: { target: { value: string } }) => {
     setName(event.target.value);
@@ -27,12 +38,30 @@ function AddUserPage(): JSX.Element {
     setRole(event.target.value);
   };
 
-  function submitForm() {
-    validateNameAndRole(name, role);
+  async function submitForm() {
+    validateName(name);
     validatePhone(phone);
     validateEmail(email);
+    await newUser(name, email, phone, birthDate, role);
   }
 
+  async function newUser(name: string, email: string, phone: string, birthDate: string, role: string) {
+    try {
+      const response = await createUser({
+        variables: {
+          name: name,
+          email: email,
+          phone: phone,
+          birthDate: birthDate,
+          password: 'dvidhqsaihb76437824',
+          //role: role,
+        },
+      });
+      console.log('response', response);
+    } catch (error) {
+      alert(error);
+    }
+  }
   const today = new Date();
   const intDay = today.getDate();
   const intMonth = today.getMonth() + 1;
@@ -67,7 +96,11 @@ function AddUserPage(): JSX.Element {
           <label>E-mail</label>
           <input type='text' name='email' required className='Input' onChange={handleEmailChange} />
           <label>Ocupação</label>
-          <input type='text' name='role' required className='Input' onChange={handleRoleChange} />
+          <select name='role' required onChange={handleRoleChange}>
+            <option value=''></option>
+            <option value='user'>Usuário</option>
+            <option value='admin'>Admin</option>
+          </select>
           <input type='submit' value='Adicionar usuário' className='Submit-button' />
         </form>
       </header>

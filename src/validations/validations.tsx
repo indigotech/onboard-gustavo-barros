@@ -34,23 +34,15 @@ export const validateEmail = (email: string): boolean => {
   return true;
 };
 
-export const validateNameAndRole = (name: string, role: string): boolean => {
-  const validNameAndRoleRegex = /[A-Z.,]|[a-z.,]/;
+export const validateName = (name: string): boolean => {
+  const validNameRegex = /[A-Z.,]|[a-z.,]/;
 
   if (name.length === 0) {
     alert('Name is a required field');
     return false;
   }
-  if (!validNameAndRoleRegex.test(name)) {
+  if (!validNameRegex.test(name)) {
     alert('Your name must contain only letters');
-    return false;
-  }
-  if (role.length === 0) {
-    alert('Role is a required field');
-    return false;
-  }
-  if (!validNameAndRoleRegex.test(role)) {
-    alert('Your role must contain only letters');
     return false;
   }
   return true;
