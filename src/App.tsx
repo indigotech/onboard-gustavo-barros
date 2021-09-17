@@ -10,12 +10,14 @@ function App(): JSX.Element {
     <BrowserRouter>
       <Switch>
         <Route exact path='/' component={LoginPage} />
-        <Route path='/add-user' component={AddUserPage} />
-        <Route path='/users-list'>
-          <ApolloProvider client={clientUsersRequest}>
+        <ApolloProvider client={clientUsersRequest}>
+          <Route path='/users-list'>
             <UsersList />
-          </ApolloProvider>
-        </Route>
+          </Route>
+          <Route path='/add-user'>
+            <AddUserPage />
+          </Route>
+        </ApolloProvider>
       </Switch>
     </BrowserRouter>
   );

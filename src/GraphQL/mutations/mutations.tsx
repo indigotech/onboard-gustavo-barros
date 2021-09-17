@@ -12,3 +12,22 @@ export const LOGIN_MUTATION = gql`
     }
   }
 `;
+
+export const CREATE_USER = gql`
+  mutation CreateUser(
+    $name: String!
+    $email: String!
+    $phone: String!
+    $birthDate: String!
+    $password: String!
+    $role: String!
+  ) {
+    createUser(
+      data: { name: $name, email: $email, phone: $phone, birthDate: $birthDate, password: $password, role: "user" }
+    ) {
+      id
+      name
+      email
+    }
+  }
+`;
