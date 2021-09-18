@@ -9,6 +9,11 @@ import './UsersList.css';
 
 export const usersListPath = '/users-list';
 
+export interface User {
+  name: string
+  email: string,
+}
+
 function UsersList(): JSX.Element {
   const { loading, error, data } = useQuery(GET_USERS);
 
@@ -30,7 +35,7 @@ function UsersList(): JSX.Element {
   const pagesVisited = usersPerPage * pageNumber;
   const pageCount = Math.ceil(users.length / usersPerPage);
 
-  const displayUsers = users.slice(pagesVisited, pagesVisited + usersPerPage).map((user: any) => {
+  const displayUsers = users.slice(pagesVisited, pagesVisited + usersPerPage).map((user: User) => {
     return (
       <div className='users-list'>
         <div className='container_list-item'>
@@ -58,7 +63,7 @@ function UsersList(): JSX.Element {
         </div>
       </div>
       <div>
-        {!error ? displayUsers : alert(error.message)}
+        {!error && displayUsers}
         <ReactPaginate
           previousLabel='Previous'
           nextLabel='Next'
