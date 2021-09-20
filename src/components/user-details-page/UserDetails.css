@@ -1,0 +1,14 @@
+.container {
+  justify-content: center;
+  display: grid;
+}
+
+.table-container {
+  text-align: left;
+}
+
+.table-row {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+}

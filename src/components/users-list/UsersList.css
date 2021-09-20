@@ -1,6 +1,7 @@
 .Header {
   padding: 10px;
   justify-content: center;
+  display: grid;
 }
 
 .List-container {
@@ -57,4 +58,15 @@
   border-radius: 8px;
   justify-content: center;
   align-items: flex-end;
+}
+
+.table-container {
+  text-align: left;
+}
+
+.table-row_users {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  cursor: pointer;
 }

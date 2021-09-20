@@ -24,9 +24,22 @@ export const GET_USERS = gql`
   query GetUsers {
     users(pageInfo: {}) {
       nodes {
+        id
         name
         email
       }
+    }
+  }
+`;
+
+export const USER_DETAILS = gql`
+  query UserDetails($id: ID!) {
+    user(id: $id) {
+      name
+      phone
+      birthDate
+      email
+      role
     }
   }
 `;
